@@ -20,6 +20,9 @@ inputs:
     description: "CloudSQL Proxy Version"
     required: false
     default: 1.21.0
+  container_name:
+    description: "Docker container name"
+    required: true
 
 runs:
   using: "composite"
@@ -32,7 +35,7 @@ runs:
         echo '${{ inputs.creds }}' > /tmp/gce-cloudsql-proxy/key.json
 
         # start container
-        docker run -d --net host --name gce-cloudsql-proxy --restart on-failure \
+        docker run -d --net host --name ${{ inputs.container_name }} --restart on-failure \
         -v /tmp/gce-cloudsql-proxy:/tmp/gce-cloudsql-proxy \
         gcr.io/cloudsql-docker/gce-proxy:${{ inputs.proxy_version }} \
         /cloud_sql_proxy \
@@ -54,7 +57,7 @@ runs:
         done
 
         # print container logs
-        docker logs gce-cloudsql-proxy
+        docker logs ${{ inputs.container_name }}
 
         # exit with error code if we couldn't connect
         if [[ $isready -ne 0 ]]; then
