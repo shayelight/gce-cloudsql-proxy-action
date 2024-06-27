@@ -19,7 +19,7 @@ or use a tool like [Terraform](https://www.terraform.io).
 | `instance`                       | ***Required*** Cloud SQL connection name                                    |
 | `port`                           | Listen on port, default 5432                                                |
 | `proxy_version`                  | Cloud SQL Proxy version, default 1.21.0                                     |
-| `container_name`                 | Docker container name, default gce-cloudsql-proxy                           |
+| `container_name`                 | Docker container name, default "gce-cloudsql-proxy"                         |
 
 
 ## Example Usage
