@@ -22,7 +22,8 @@ inputs:
     default: 1.21.0
   container_name:
     description: "Docker container name"
-    required: true
+    required: false
+    default: gce-cloudsql-proxy
 
 runs:
   using: "composite"
